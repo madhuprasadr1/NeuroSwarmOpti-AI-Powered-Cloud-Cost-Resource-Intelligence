@@ -1,0 +1,3 @@
+# Optional neural LSTM workload forecaster. The tabular forecast models run
+# without this large dependency.
+torch>=2.2,<3

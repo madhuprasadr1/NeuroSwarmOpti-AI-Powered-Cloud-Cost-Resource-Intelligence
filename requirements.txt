@@ -1,0 +1,39 @@
+# Machine Learning & Deep Learning Core
+numpy>=1.26,<3
+pandas>=2.1,<4
+scikit-learn>=1.4,<2
+lightgbm>=4.0,<5
+xgboost>=2.0,<4
+torch>=2.2,<3
+joblib>=1.3,<2
+scipy>=1.12,<2
+
+# Real Cloud SDKs (AWS, Azure, GCP only)
+boto3>=1.34,<2
+botocore>=1.34,<2
+azure-identity>=1.15,<2
+azure-mgmt-compute>=30.0,<39
+azure-mgmt-monitor>=6.0,<8
+azure-storage-queue>=12.17,<13
+google-cloud-compute>=1.19,<2
+google-cloud-monitoring>=2.15,<3
+google-cloud-pubsub>=2.18,<3
+google-auth>=2.20,<3
+
+# Web Console & REST API
+fastapi>=0.110,<1
+uvicorn>=0.28,<1
+pydantic>=2.0,<3
+
+# Database, Security & Scheduling
+sqlalchemy>=2.0,<3
+keyring>=24.0,<26
+schedule>=1.2,<2
+
+# CLI & Utilities
+typer>=0.12,<1
+rich>=13.7,<16
+pyyaml>=6.0,<7
+requests>=2.31,<3
+httpx>=0.27,<1
+pytest>=8,<9

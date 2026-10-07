@@ -1,0 +1,48 @@
+# Virtual Environments
+.venv/
+venv/
+ENV/
+env/
+
+# Python compilation and caching
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Logs and scratch directories
+*.log
+scratch/
+tmp/
+.temp/
+
+# Sensitive credentials & secrets
+.env
+.env.*
+secrets.toml
+*.pem
+*.key
+credentials.json
+token.json
+.streamlit/secrets.toml
+
+# Large raw and processed feature files (can be regenerated with python -m cba.cli.main prepare)
+*.csv
+!outputs/live/telemetry.csv
+!outputs/live/recommendations.csv
+*.db
+
+# Temporary test queue runs and action execution records
+outputs/test_queue/
+outputs/test_queue_sqs_resilience/
+outputs/live/actions/
+outputs/live/emails/
+outputs/live/queue/
+outputs/live/user_session.json
+outputs/live/email_alerts.json
+outputs/*.pdf
+outputs/*.html
+

@@ -1,0 +1,2 @@
+provider,account_id,resource_id,resource_name,region,environment,state,instance_type,cpu_usage,cpu_max,memory_usage,original_state
+aws,245716172295,i-0b6230979eb053bf5,demo-web-for-HACKATHON,ap-southeast-2,untagged,running,t3.micro,0.39,0.47,35.0,{'instance_type': 't3.micro'}

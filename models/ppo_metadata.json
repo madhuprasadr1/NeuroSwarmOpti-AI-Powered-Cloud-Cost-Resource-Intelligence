@@ -1,0 +1,16 @@
+{
+  "episodes": 150,
+  "mean_reward": 93.9,
+  "max_reward": 133.48,
+  "policy_loss": -0.0036,
+  "value_loss": 45.2773,
+  "entropy": 0.5825,
+  "action_distribution": {
+    "no_action": 22.7,
+    "scale_down": 24.4,
+    "scale_down_2": 8.5,
+    "scale_up": 44.4
+  },
+  "sla_breach_rate_pct": 8.03,
+  "training_samples": 50000
+}

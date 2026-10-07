@@ -1,0 +1,1263 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CloudOpt AI — Enterprise Autonomous Cloud Cost & Resource Intelligence</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%2309090b'><path d='M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96z'/></svg>">
+  <link rel="stylesheet" href="/styles/main.css">
+  <!-- Chart.js for Monochromatic Interactive Visualizations -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <div class="container">
+    
+    <!-- Top Corporate Monochromatic Header -->
+    <header class="mono-nav">
+      <div class="mono-brand">
+        <span>CLOUDOpt</span>
+        <span class="mono-badge">PRODUCTION CONSOLE v2.7</span>
+      </div>
+      <div class="nav-actions">
+        <div class="model-audit-bar" id="modelAuditBar" style="cursor:pointer;" title="Click to inspect all 5 trained AI models and live evaluation metrics">
+          <span>Loading verified model metrics...</span>
+        </div>
+        <div class="mono-status-pill">
+          <span class="pulse-dot"></span>
+          <span>PRODUCTION READY</span>
+        </div>
+        <button id="themeToggleBtn" class="btn-icon">🌙 Obsidian Dark</button>
+        <div id="userNavProfile" class="user-nav-profile" style="display:none;">
+          <div class="user-avatar" id="userAvatarIcon">M</div>
+          <span class="user-email-label" id="userEmailLabel" title="Signed in Gmail account">user@gmail.com</span>
+          <span id="googleVerifiedBadge" class="mono-badge" style="display:none; background:rgba(34,197,94,0.15); color:#22c55e; border-color:rgba(34,197,94,0.3); font-size:10px; font-weight:700;">✓ GOOGLE VERIFIED</span>
+          <button id="openAlertsModalBtn" class="mono-badge" title="View real-time email alerts audit stream" style="cursor:pointer; display:flex; align-items:center; gap:5px; background:var(--bg-subtle);">
+            <span style="display:inline-block; width:6px; height:6px; border-radius:50%; background:#22c55e;"></span>
+            <span>Alerts Log</span>
+          </button>
+          <button id="logoutBtn" class="btn btn-secondary" style="padding:4px 10px; font-size:11px;">Sign Out</button>
+        </div>
+      </div>
+    </header>
+
+    <!-- Sticky Quick Navigation Bar -->
+    <nav class="quick-nav-bar" id="quickNavBar">
+      <div class="quick-nav-links">
+        <a href="#sectionAutonomous3D" class="quick-nav-btn active" data-target="sectionAutonomous3D">📐 00 Architecture &amp; 3D</a>
+        <a href="#secCloudConnect" class="quick-nav-btn" data-target="secCloudConnect">☁️ 01 Connect &amp; IAM</a>
+        <a href="#secTelemetry" class="quick-nav-btn" data-target="secTelemetry">📊 02 Live Telemetry</a>
+        <a href="#secAiRightsizing" class="quick-nav-btn" data-target="secAiRightsizing">🧠 03 AI Right-Sizing</a>
+        <a href="#secQueue" class="quick-nav-btn" data-target="secQueue">📬 04 Cloud Queue</a>
+        <a href="#secRollback" class="quick-nav-btn" data-target="secRollback">🛡️ 05 Auto-Rollback</a>
+        <a href="#secForecaster" class="quick-nav-btn" data-target="secForecaster">📈 06 Spend Forecaster</a>
+      </div>
+      <div class="mono-badge" style="background:rgba(34,197,94,0.12); color:#22c55e; border-color:rgba(34,197,94,0.3); font-size:10.5px; font-weight:700;">
+        ✓ STRICTLY REAL CLOUD RESULTS
+      </div>
+    </nav>
+
+    <!-- Executive 4-Step Interactive Workflow Guide -->
+    <div class="executive-stepper-hero">
+      <div class="executive-stepper-header">
+        <div>
+          <div style="font-size: 13.5px; font-weight: 800; color: var(--text-primary); display:flex; align-items:center; gap:8px;">
+            <span>⚡</span>
+            <span>HOW CLOUDOpt AI WORKS: 4-STEP AUTONOMOUS PIPELINE</span>
+          </div>
+          <div style="font-size: 11px; color: var(--text-secondary); margin-top: 2px;">
+            Direct multi-cloud telemetry ingestion to dollar-quantified right-sizing with verified fail-safe surveillance (Strictly zero synthetic records)
+          </div>
+        </div>
+        <span class="mono-badge" style="background: rgba(34,197,94,0.12); color: #22c55e; border-color: rgba(34,197,94,0.3);">
+          100% AUDITABLE &amp; SAFE
+        </span>
+      </div>
+      <div class="stepper-track-grid">
+        <div class="stepper-step-card" data-jump="secCloudConnect">
+          <div class="stepper-step-num">STEP 01 // INGESTION</div>
+          <div class="stepper-step-title">Connect Cloud &amp; Stream</div>
+          <div class="stepper-step-desc">Extracts authentic 5-min CPU/memory metrics via least-privilege read-only IAM across AWS, Azure, or GCP.</div>
+          <div class="stepper-step-jump">Jump to Connect ➔</div>
+        </div>
+        <div class="stepper-step-card" data-jump="secAiRightsizing">
+          <div class="stepper-step-num">STEP 02 // INFERENCE</div>
+          <div class="stepper-step-title">5-Model AI Consensus</div>
+          <div class="stepper-step-desc">Model 01 GBDT (99.7% Acc), Model 02 Google Borg ResNet, Model 04 Anomaly Gate, and Model 05 PPO RL Policy.</div>
+          <div class="stepper-step-jump">Jump to AI Recs ➔</div>
+        </div>
+        <div class="stepper-step-card" data-jump="secQueue">
+          <div class="stepper-step-num">STEP 03 // DISPATCH</div>
+          <div class="stepper-step-title">Decoupled Queue Dispatch</div>
+          <div class="stepper-step-desc">Enqueues execution payloads to AWS SQS FIFO, Azure Service Bus, or GCP Pub/Sub with approval gating.</div>
+          <div class="stepper-step-jump">Jump to Queue ➔</div>
+        </div>
+        <div class="stepper-step-card" data-jump="secRollback">
+          <div class="stepper-step-num">STEP 04 // FAIL-SAFE</div>
+          <div class="stepper-step-title">Health Surveillance Loop</div>
+          <div class="stepper-step-desc">Monitors resized nodes for 600s. If CPU breaches the 85% SLA boundary, auto-reverts SKU instantly.</div>
+          <div class="stepper-step-jump">Jump to Rollback ➔</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Executive KPI Bar -->
+    <section class="kpi-row">
+      <div class="kpi-box">
+        <div class="kpi-label">Projected Monthly Savings</div>
+        <div class="kpi-num" id="kpiMonthlySavings">$0.00</div>
+        <div class="kpi-desc" id="kpiAnnualSavings">Annualized: $0.00</div>
+      </div>
+      <div class="kpi-box">
+        <div class="kpi-label">Analyzed Live Instances</div>
+        <div class="kpi-num" id="kpiActiveInstances">0</div>
+        <div class="kpi-desc">Strictly Authentic Telemetry</div>
+      </div>
+      <div class="kpi-box">
+        <div class="kpi-label">Safe Automation Candidates</div>
+        <div class="kpi-num" id="kpiSafeCandidates">0</div>
+        <div class="kpi-desc">Borg Workload Resilience &ge; 80</div>
+      </div>
+      <div class="kpi-box">
+        <div class="kpi-label">Risky Actions (Approval Gate)</div>
+        <div class="kpi-num" id="kpiRiskyGates">0</div>
+        <div class="kpi-desc">Operator Sign-Off Enforced</div>
+      </div>
+    </section>
+
+    <!-- Section 00: Autonomous Architecture, 3D Workflow & Enterprise Safety Guardrails -->
+    <section class="mono-panel" id="sectionAutonomous3D" style="margin-bottom: 24px;">
+      <div class="mono-panel-header">
+        <div>
+          <h2 class="mono-panel-title">
+            <span>00 // Autonomous Architecture, 3D Workflow &amp; Enterprise Safety Guardrails</span>
+          </h2>
+          <p class="mono-panel-desc">
+            Interactive isometric 3D pipeline topology, multi-model radar intelligence, and 4 enterprise safety pillars (Strictly zero synthetic data)
+          </p>
+        </div>
+        <div style="display:flex; align-items:center; gap:8px;">
+          <button id="triggerPipelinePulseBtn" class="btn btn-secondary" style="font-size:11px; padding:4px 10px;" title="Trigger a particle burst down the autonomous pipeline">
+            ⚡ Trigger Pulse
+          </button>
+          <button id="reset3DViewBtn" class="btn btn-secondary" style="font-size:11px; padding:4px 10px;" title="Reset isometric 3D camera angle">
+            🔄 Reset Camera
+          </button>
+          <span class="mono-badge" style="background:rgba(34,197,94,0.12); color:#22c55e; border-color:rgba(34,197,94,0.25);">
+            4 SAFETY PILLARS ENFORCED
+          </span>
+        </div>
+      </div>
+
+      <div class="section-tldr-banner">
+        <span class="section-tldr-badge">💡 PLAIN ENGLISH GUIDE</span>
+        <div>
+          <strong>System Overview:</strong> Multi-model AI ensemble trained on 10,081 Google Borg cluster traces and 50,000 multi-cloud metrics. Reinforcement Learning (PPO Agent) maximizes dollar cost savings while penalizing compute saturation beyond 85% CPU. Zero synthetic records.
+        </div>
+      </div>
+
+      <!-- 3D Isometric Canvas Viewport & Node Inspector -->
+      <div class="workflow-3d-wrapper">
+        <div class="workflow-canvas-container">
+          <canvas id="workflow3dCanvas"></canvas>
+          <div class="workflow-canvas-overlay">
+            <span class="mono-badge" style="background:var(--bg-card); font-size:10px;">
+              CLICK ANY 3D NODE TO INSPECT MATHEMATICS & SAFETY
+            </span>
+          </div>
+          <div class="workflow-canvas-actions">
+            <span class="mono-badge" style="font-size:10px;">
+              DRAG TO ROTATE 3D PERSPECTIVE
+            </span>
+          </div>
+        </div>
+
+        <!-- 3D Interactive Node Selector Strip -->
+        <div class="workflow-3d-node-strip">
+          <span style="font-family:'JetBrains Mono'; font-size:10px; font-weight:700; color:var(--text-muted); padding-right:4px;">INSPECT NODE:</span>
+          <button class="node-strip-btn" data-node="0">01 // Multi-Cloud Collectors</button>
+          <button class="node-strip-btn" data-node="1">02 // 15-Feature Engineering</button>
+          <button class="node-strip-btn" data-node="2">03 // GBDT &amp; Borg Consensus</button>
+          <button class="node-strip-btn" data-node="3">04 // Autonomous PPO Agent</button>
+          <button class="node-strip-btn" data-node="4">05 // Decoupled Cloud Queue</button>
+          <button class="node-strip-btn" data-node="5">06 // Health Surveillance FSA</button>
+        </div>
+
+        <!-- Interactive Node Inspector Container -->
+        <div id="workflowNodeInspector" style="padding: 16px; background: var(--bg-card); border-top: 1px solid var(--border-subtle);"></div>
+      </div>
+
+      <!-- End-to-End System Architecture & Telemetry Pipeline Topology -->
+      <div class="topology-container">
+        <div class="topology-header">
+          <div>
+            <div style="font-size: 14px; font-weight: 700; color: var(--text-primary); display: flex; align-items: center; gap: 8px;">
+              <span>📐</span>
+              <span>End-to-End Autonomous System Architecture & Telemetry Pipeline</span>
+            </div>
+            <div style="font-size: 11px; color: var(--text-secondary); margin-top: 2px;">
+              Deterministic 6-stage operational pipeline from multi-cloud metric ingestion to autonomous PPO execution & fail-safe rollback
+            </div>
+          </div>
+          <span class="mono-badge">6 STAGES VERIFIED</span>
+        </div>
+        <div class="topology-grid">
+          <div class="topology-stage-card">
+            <div class="topology-stage-num">STAGE 01</div>
+            <div class="topology-stage-title">Multi-Cloud Collectors</div>
+            <div class="topology-stage-desc">AWS CloudWatch, Azure Monitor, GCP Cloud Monitoring raw telemetry extraction via least-privilege IAM.</div>
+            <div class="topology-stage-badge">5-Min Cadence</div>
+          </div>
+          <div class="topology-stage-card">
+            <div class="topology-stage-num">STAGE 02</div>
+            <div class="topology-stage-title">15-Feature Engineering</div>
+            <div class="topology-stage-desc">Vectorization, utilization pressure scaling, burst ratios, and memory saturation indices.</div>
+            <div class="topology-stage-badge">StandardScaler</div>
+          </div>
+          <div class="topology-stage-card">
+            <div class="topology-stage-num">STAGE 03</div>
+            <div class="topology-stage-title">Multi-Model AI Consensus</div>
+            <div class="topology-stage-desc">Model 01 GBDT (99.7% Acc), Model 02 Google Borg ResNet, Model 04 Isolation Forest Anomaly Gate.</div>
+            <div class="topology-stage-badge">3-Way Gate</div>
+          </div>
+          <div class="topology-stage-card">
+            <div class="topology-stage-num">STAGE 04</div>
+            <div class="topology-stage-title">Autonomous PPO Agent</div>
+            <div class="topology-stage-desc">Model 05 Reinforcement Learning policy maximizing cost savings while penalizing SLA risk (&lt;85% CPU).</div>
+            <div class="topology-stage-badge">Actor-Critic PPO</div>
+          </div>
+          <div class="topology-stage-card">
+            <div class="topology-stage-num">STAGE 05</div>
+            <div class="topology-stage-title">Async Queue Decoupling</div>
+            <div class="topology-stage-desc">AWS SQS FIFO, Azure Service Bus, GCP Pub/Sub deduplicated execution dispatch with audit trail.</div>
+            <div class="topology-stage-badge">Idempotent</div>
+          </div>
+          <div class="topology-stage-card">
+            <div class="topology-stage-num">STAGE 06</div>
+            <div class="topology-stage-title">Surveillance & Rollback</div>
+            <div class="topology-stage-desc">Continuous 600-sec health polling. Instant automated rollback to baseline SKU if CPU breaches 85%.</div>
+            <div class="topology-stage-badge">Zero-Downtime FSA</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Mathematical Formulation & Analytical Technical Callouts -->
+      <div class="math-formula-grid">
+        <!-- Card 1: PPO Objective -->
+        <div class="math-formula-card">
+          <div class="math-formula-title">
+            <span>⚡</span> Model 05: PPO Clipped Surrogate Objective
+          </div>
+          <div class="math-code-block">
+L^{CLIP}(\theta) = \hat{\mathbb{E}}_t \left[ \min\left( r_t(\theta)\hat{A}_t, \, \text{clip}(r_t(\theta), 1-\epsilon, 1+\epsilon)\hat{A}_t \right) \right]
+          </div>
+          <div class="math-code-desc">
+            Constrains policy update step ratio $r_t(\theta) = \frac{\pi_\theta(a_t|s_t)}{\pi_{\theta_{old}}(a_t|s_t)}$ within $[1-\epsilon, 1+\epsilon]$ ($\epsilon=0.20$), preventing catastrophic policy collapse during cloud sizing decisions.
+          </div>
+        </div>
+
+        <!-- Card 2: FinOps Multi-Objective Reward & SLA Cliff Chart -->
+        <div class="math-formula-card">
+          <div class="math-formula-title">
+            <span>📈</span> FinOps Multi-Objective Reward Function
+          </div>
+          <div class="math-code-block">
+R = 3.5 \cdot \Delta\text{Cost} + 0.5 \cdot \text{Headroom} - \text{SLAPenalty} - 0.1 \cdot \text{Churn}
+\text{where } \text{SLAPenalty} = 15.0 \text{ if } \text{CPU} \ge 85\% \text{ else } 0
+          </div>
+          <div class="math-code-desc" style="margin-bottom: 8px;">
+            Quantifies trade-off between hourly dollar savings and SLA safety headroom. Severe penalty triggers if CPU breaches the 85% threshold.
+          </div>
+          <div style="height: 140px; position: relative;">
+            <canvas id="rewardCurveChart"></canvas>
+          </div>
+        </div>
+
+        <!-- Card 3: Google Borg Resilience Gate -->
+        <div class="math-formula-card">
+          <div class="math-formula-title">
+            <span>🛡️</span> Google Borg Resilience Gate Function
+          </div>
+          <div class="math-code-block">
+S_{\text{Borg}} = \text{ResNet}(\mathbf{x}) \in [0, 100]
+\text{Gate}(\mathbf{x}) = \begin{cases} \text{APPROVED}, & \text{if } S_{\text{Borg}} \ge 80 \wedge \text{CPU}_{\text{post}} \le 75\% \\ \text{BLOCKED}, & \text{otherwise} \end{cases}
+          </div>
+          <div class="math-code-desc">
+            Deep PyTorch Residual MLP trained over 500 epochs on 10,081 cluster traces evaluates cluster pressure and job evictions to safeguard against cluster collapse.
+          </div>
+        </div>
+      </div>
+
+      <!-- 4 Enterprise Safety Guardrail Pillars -->
+      <div class="safety-pillars-grid">
+        <!-- Pillar 1 -->
+        <div class="safety-pillar-card" style="--pillar-accent: #22c55e;">
+          <div class="safety-pillar-header">
+            <span class="safety-pillar-icon">🛡️</span>
+            <span class="mono-badge" style="background:rgba(34,197,94,0.15); color:#22c55e; border-color:rgba(34,197,94,0.3); font-size:10px;">
+              PILLAR 01
+            </span>
+          </div>
+          <div class="safety-pillar-title">Google Borg Resilience Gate</div>
+          <div class="safety-pillar-metric" id="cardBorgGateVal">Headroom Score &ge; 80</div>
+          <div class="safety-pillar-desc">
+            Trained on <strong>10,081 cluster traces</strong> over 500 deep PyTorch epochs. Strictly blocks right-sizing actions during cluster stress or failure spikes. <strong>90.23%</strong> of traces fall within safe headroom bounds.
+          </div>
+        </div>
+
+        <!-- Pillar 2 -->
+        <div class="safety-pillar-card" style="--pillar-accent: #3b82f6;">
+          <div class="safety-pillar-header">
+            <span class="safety-pillar-icon">🏷️</span>
+            <span class="mono-badge" style="background:rgba(59,130,246,0.15); color:#60a5fa; border-color:rgba(59,130,246,0.3); font-size:10px;">
+              PILLAR 02
+            </span>
+          </div>
+          <div class="safety-pillar-title">Environment Tag Governance</div>
+          <div class="safety-pillar-metric">Max 1-Tier Cap (PROD)</div>
+          <div class="safety-pillar-desc">
+            Production nodes (<code>Environment=prod</code>) are architecturally capped to a maximum downscale of 1 SKU tier (e.g. <code>t3.large</code> &rarr; <code>t3.medium</code>). Multi-tier downsizing allowed strictly on Staging & Dev.
+          </div>
+        </div>
+
+        <!-- Pillar 3 -->
+        <div class="safety-pillar-card" style="--pillar-accent: #ef4444;">
+          <div class="safety-pillar-header">
+            <span class="safety-pillar-icon">🔄</span>
+            <span class="mono-badge" style="background:rgba(239,68,68,0.15); color:#f87171; border-color:rgba(239,68,68,0.3); font-size:10px;">
+              PILLAR 03
+            </span>
+          </div>
+          <div class="safety-pillar-title">10-Min Health Surveillance</div>
+          <div class="safety-pillar-metric">CPU &gt; 85% Auto-Rollback</div>
+          <div class="safety-pillar-desc">
+            Monitors newly resized instances continuously for 600 seconds. If CPU breaches 85% or memory saturates, initiates instant autonomous rollback to original pre-optimization SKU with zero downtime SLA impact.
+          </div>
+        </div>
+
+        <!-- Pillar 4 -->
+        <div class="safety-pillar-card" style="--pillar-accent: #a855f7;">
+          <div class="safety-pillar-header">
+            <span class="safety-pillar-icon">🔐</span>
+            <span class="mono-badge" style="background:rgba(168,85,247,0.15); color:#c084fc; border-color:rgba(168,85,247,0.3); font-size:10px;">
+              PILLAR 04
+            </span>
+          </div>
+          <div class="safety-pillar-title">Least-Privilege Read-Only IAM</div>
+          <div class="safety-pillar-metric">Zero Destructive Privileges</div>
+          <div class="safety-pillar-desc">
+            Web tier runs with strictly read-only cloud descriptors (<code>ec2:Describe*</code>, <code>monitoring:Get*</code>) and temporary STS session tokens. Execution is decoupled through asynchronous AWS SQS / Azure Service Bus.
+          </div>
+        </div>
+      </div>
+
+      <!-- Multi-Dimensional Analytics Grid (3 Charts) -->
+      <div class="analytics-grid-3col">
+        <!-- Chart 1: Model Radar -->
+        <div class="analytics-card">
+          <div class="analytics-card-header">
+            <div>
+              <div class="analytics-card-title">
+                <span>🎯</span> Multi-Model Performance Radar
+              </div>
+              <div class="analytics-card-desc">Verified metrics from <code>models/metrics.json</code> vs heuristic baseline</div>
+            </div>
+            <span class="mono-badge" id="radarAccBadge" style="background:rgba(59,130,246,0.1); color:#60a5fa; font-size:10px;">
+              99.7% ACCURACY
+            </span>
+          </div>
+          <div class="analytics-chart-viewport">
+            <canvas id="modelRadarChart"></canvas>
+          </div>
+        </div>
+
+        <!-- Chart 2: Multi-Cloud Spend & Savings Doughnut -->
+        <div class="analytics-card">
+          <div class="analytics-card-header">
+            <div>
+              <div class="analytics-card-title">
+                <span>☁️</span> Multi-Cloud Savings Potential
+              </div>
+              <div class="analytics-card-desc">Real catalog pricing across AWS, Azure, and GCP compute SKUs</div>
+            </div>
+            <span class="mono-badge" style="font-size:10px;">
+              28 SKU FAMILIES
+            </span>
+          </div>
+          <div class="analytics-chart-viewport">
+            <canvas id="multiCloudDoughnut"></canvas>
+          </div>
+        </div>
+
+        <!-- Chart 3: Borg Stress Distribution -->
+        <div class="analytics-card">
+          <div class="analytics-card-header">
+            <div>
+              <div class="analytics-card-title">
+                <span>📊</span> Borg Cluster Stress & Headroom Distribution
+              </div>
+              <div class="analytics-card-desc">10,081 real Google Borg traces with 80% safety gate boundary</div>
+            </div>
+            <span class="mono-badge" id="borgSafeRatioBadge" style="background:rgba(34,197,94,0.1); color:#22c55e; font-size:10px;">
+              90.2% SAFE HEADROOM
+            </span>
+          </div>
+          <div class="analytics-chart-viewport">
+            <canvas id="borgStressChart"></canvas>
+          </div>
+        </div>
+      </div>
+
+      <!-- "How the Solution is Given" Step-by-Step Transparency Architecture -->
+      <div class="solution-flow-card">
+        <div class="solution-flow-header">
+          <div>
+            <div style="font-size: 14px; font-weight: 700; color: var(--text-primary); display: flex; align-items: center; gap: 8px;">
+              <span>🔬</span>
+              <span>How the Solution is Given: Step-by-Step Algorithmic Attribution</span>
+            </div>
+            <div style="font-size: 11px; color: var(--text-secondary); margin-top: 2px;">
+              End-to-end transparent derivation from raw cloud telemetry signals to dollar-quantified right-sizing actions
+            </div>
+          </div>
+          <span class="mono-badge" style="background: rgba(34,197,94,0.1); color: #22c55e; border-color: rgba(34,197,94,0.3); font-size: 10px;">
+            ZERO SYNTHETIC DATA
+          </span>
+        </div>
+
+        <div class="solution-step-track">
+          <!-- Step 1 -->
+          <div class="solution-step-box">
+            <div class="solution-step-badge">PHASE 01 // INGESTION</div>
+            <div class="solution-step-title">Raw Telemetry Pull</div>
+            <div class="solution-step-desc">
+              Directly queries AWS CloudWatch / Azure Monitor for authentic 5-minute metric rollups without synthetic smoothing or interpolation.
+            </div>
+            <div class="solution-step-formula">
+              Metric = {CPU_avg, Mem_pct, Net_io, Disk_ops}
+            </div>
+          </div>
+
+          <!-- Step 2 -->
+          <div class="solution-step-box">
+            <div class="solution-step-badge">PHASE 02 // VECTORIZATION</div>
+            <div class="solution-step-title">15-Feature Engineering</div>
+            <div class="solution-step-desc">
+              Computes utilization ratios, pressure indices, and normalized feature vectors passed through standard scaler transformation.
+            </div>
+            <div class="solution-step-formula">
+              X_norm = StandardScaler(utilization, pressure, vcpu)
+            </div>
+          </div>
+
+          <!-- Step 3 -->
+          <div class="solution-step-box">
+            <div class="solution-step-badge">PHASE 03 // INFERENCE</div>
+            <div class="solution-step-title">5-Model AI Consensus</div>
+            <div class="solution-step-desc">
+              Model 01 GBDT (99.67% Acc) + Model 02 Google Borg ResNet + Model 04 Anomaly Gate + Model 05 PPO RL Agent (Actor-Critic).
+            </div>
+            <div class="solution-step-formula">
+              Action = PPO(s) \land GBDT(X) \text{ if } Borg \ge 80 \wedge Anom &lt; 0.35
+            </div>
+          </div>
+
+          <!-- Step 4 -->
+          <div class="solution-step-box">
+            <div class="solution-step-badge">PHASE 04 // MAPPING</div>
+            <div class="solution-step-title">SKU & Dollar Math</div>
+            <div class="solution-step-desc">
+              Applies environment tier caps, maps target hardware capacity, and computes verified monthly savings from live pricing catalog.
+            </div>
+            <div class="solution-step-formula">
+              Savings = (&Delta;Price_hr) &times; 730 hrs/month
+            </div>
+          </div>
+
+          <!-- Step 5 -->
+          <div class="solution-step-box">
+            <div class="solution-step-badge">PHASE 05 // SURVEILLANCE</div>
+            <div class="solution-step-title">Decoupled Rollback Watch</div>
+            <div class="solution-step-desc">
+              Dispatches execution message to SQS FIFO; starts 600s surveillance loop with automatic rollback trigger if CPU exceeds 85%.
+            </div>
+            <div class="solution-step-formula">
+              Rollback if CPU(t &le; 600s) &gt; 85%
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 01: Cloud Infrastructure Connect & IAM -->
+    <section class="mono-panel" id="secCloudConnect">
+      <div class="mono-panel-header">
+        <h2 class="mono-panel-title">
+          <span>01 // Cloud Infrastructure Connect &amp; Least-Privilege IAM</span>
+        </h2>
+        <div class="provider-toggle">
+          <button class="provider-btn active" data-provider="aws">AWS EC2</button>
+          <button class="provider-btn" data-provider="azure">Azure Compute</button>
+          <button class="provider-btn" data-provider="gcp">Google Cloud (GCP)</button>
+        </div>
+      </div>
+
+      <div class="section-tldr-banner">
+        <span class="section-tldr-badge">💡 PLAIN ENGLISH GUIDE</span>
+        <div>
+          <strong>Cloud Infrastructure Connect &amp; Autonomous Governance:</strong> Connect your AWS, Azure, or GCP accounts. CloudOpt AI operates on authentic telemetry with zero synthetic data. Execute live fleet auto-optimization, EC2 right-sizing, and EBS gp3 upgrades with atomic Dry-Run validation and 600s automated health surveillance rollback. Download the 1-click CloudFormation template below.
+        </div>
+      </div>
+
+      <div class="grid-2-col">
+        <!-- Auth Inputs Column -->
+        <div id="authFormContainer"></div>
+
+        <!-- IAM Policy Helper Column -->
+        <div id="policyDetailsContainer" style="border-left: 1px solid var(--border-subtle); padding-left: 24px;"></div>
+      </div>
+    </section>
+
+    <!-- Section 02: Real-Time Telemetry Stream & Live Monitoring -->
+    <section class="mono-panel" id="secTelemetry">
+      <div class="mono-panel-header">
+        <div>
+          <h2 class="mono-panel-title">02 // Live Telemetry Stream &amp; Real-Time Monitoring</h2>
+          <p class="mono-panel-desc">Direct ingestion from AWS CloudWatch, Azure Monitor, or GCP Monitoring</p>
+        </div>
+        <div style="display:flex; align-items:center; gap:8px;">
+          <span id="telemetryPollingBadge" class="mono-badge">POLLING: OFF</span>
+          <span class="mono-badge">METRICS INGESTION BUFFER</span>
+        </div>
+      </div>
+
+      <div class="section-tldr-banner">
+        <span class="section-tldr-badge">💡 PLAIN ENGLISH GUIDE</span>
+        <div>
+          <strong>Authentic Metrics Ingestion:</strong> Ingests unadulterated 5-minute metric rollups (Avg CPU, Max CPU, Memory %) across all tagged environments (PROD, STAGE, DEV). The live safety chart plots current utilization against the <strong>85% auto-rollback threshold</strong>.
+        </div>
+      </div>
+
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 16px; align-items: end; margin-bottom: 20px;">
+        <div class="form-group" style="margin-bottom:0;">
+          <div style="display:flex; justify-content:space-between;">
+            <label class="form-label">Lookback Window</label>
+            <span id="lookbackSliderVal" style="font-size:11px; font-family:'JetBrains Mono'; font-weight:600;">30 Minutes</span>
+          </div>
+          <input type="range" id="lookbackSlider" min="5" max="120" step="5" value="30" class="form-input" style="padding:2px 0;">
+        </div>
+
+        <div class="form-group" style="margin-bottom:0;">
+          <label class="form-label">Continuous Polling Interval</label>
+          <select id="pollingIntervalSelect" class="form-select">
+            <option value="0">Manual (Polling Off)</option>
+            <option value="30">Every 30 Seconds</option>
+            <option value="60">Every 1 Minute</option>
+            <option value="300">Every 5 Minutes</option>
+          </select>
+        </div>
+
+        <div class="form-group" style="margin-bottom:0;">
+          <label class="form-label">Environment Filter</label>
+          <select id="telemetryEnvFilter" class="form-select">
+            <option value="all">All Environments</option>
+            <option value="production">Production (PROD)</option>
+            <option value="staging">Staging (STAGE)</option>
+            <option value="development">Development (DEV)</option>
+            <option value="untagged">Untagged / Default</option>
+          </select>
+        </div>
+
+        <div class="form-group" style="margin-bottom:0;">
+          <label class="form-label">Resource ID Filter (Optional)</label>
+          <input type="text" id="resourceFilter" class="form-input" placeholder="e.g. i-0123456789abcdef0">
+        </div>
+      </div>
+
+      <div style="margin-bottom: 16px;">
+        <button id="fetchTelemetryBtn" class="btn btn-primary" style="width:100%;">Fetch Live Cloud Metrics Now</button>
+      </div>
+
+      <div id="telemetryResultBanner"></div>
+
+      <!-- Empty State -->
+      <div id="telemetryEmptyState" class="mono-callout">
+        <div class="mono-callout-title">Awaiting Real Cloud Telemetry Stream</div>
+        <div class="mono-callout-desc">
+          Authenticate your AWS, Azure, or GCP account in Section 01 and click <strong>'Fetch Live Cloud Metrics Now'</strong>. CloudOpt AI operates on authentic telemetry with zero synthetic records.
+        </div>
+      </div>
+
+      <!-- Live Telemetry Table -->
+      <div id="telemetryTableContainer" class="data-table-container" style="display:none;">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>Resource ID</th>
+              <th>Environment</th>
+              <th>Provider</th>
+              <th>Instance Type</th>
+              <th>Avg CPU (%)</th>
+              <th>Max CPU (%)</th>
+              <th>Memory (%)</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody id="telemetryTableBody"></tbody>
+        </table>
+      </div>
+
+      <!-- Chart Card -->
+      <div id="cpuChartCard" class="chart-card" style="display:none; height: 320px;">
+        <div class="chart-header">
+          <span class="chart-title">Live Instance CPU Utilization vs 85% Safety Boundary</span>
+          <span class="mono-badge">SAFETY TRIGGER &gt; 85%</span>
+        </div>
+        <div style="height: 250px;">
+          <canvas id="cpuChart"></canvas>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 03: AI Right-Sizing & Explainability Engine -->
+    <section class="mono-panel" id="secAiRightsizing">
+      <div class="mono-panel-header">
+        <div>
+          <h2 class="mono-panel-title">03 // AI Right-Sizing &amp; Explainability Engine</h2>
+          <p class="mono-panel-desc">Multi-Model Ensemble: 99.67% Accuracy | Google Borg Resilience | Isolation Forest Anomaly</p>
+        </div>
+        <div style="display:flex; align-items:center; gap: 10px; flex-wrap:wrap;">
+          <select id="recsEnvFilter" class="form-select" style="width: auto; padding: 6px 12px; font-size:12px;">
+            <option value="all">All Environments</option>
+            <option value="production">Production (PROD)</option>
+            <option value="staging">Staging (STAGE)</option>
+            <option value="development">Development (DEV)</option>
+            <option value="untagged">Untagged</option>
+          </select>
+          <button id="generateRecsBtn" class="btn btn-primary">Generate Explainable AI Recommendations</button>
+        </div>
+      </div>
+
+      <div class="section-tldr-banner">
+        <span class="section-tldr-badge">💡 PLAIN ENGLISH GUIDE</span>
+        <div>
+          <strong>Multi-Model Explainable AI:</strong> Model 01 (99.67% accuracy) calculates optimal sizing actions and dollar savings. Model 02 confirms Google Borg cluster headroom &ge; 80. Model 04 verifies zero anomaly spikes. Model 05 (PPO RL) validates policy convergence. Production instances are architecturally capped to a 1-tier downscale with mandatory operator sign-off.
+        </div>
+      </div>
+
+      <!-- Environment Policy Architecture Reference -->
+      <div class="mono-env-policy-bar" style="display:flex; gap:12px; flex-wrap:wrap; margin-bottom:16px; padding:10px 14px; background:var(--surface-elevated); border:1px solid var(--border-subtle); border-radius:4px; font-size:11px;">
+        <span style="color:var(--text-muted); font-weight:600; text-transform:uppercase; letter-spacing:0.5px;">Active Tag Governance:</span>
+        <span><strong style="color:var(--text-primary);">PROD:</strong> Conservative (&lt;15% CPU, &ge;85 Borg) • 1-Tier Limit • Mandatory Sign-off</span>
+        <span style="color:var(--border-subtle);">|</span>
+        <span><strong style="color:var(--text-primary);">STAGE:</strong> Balanced (&lt;25% CPU, &ge;75 Borg)</span>
+        <span style="color:var(--border-subtle);">|</span>
+        <span><strong style="color:var(--text-primary);">DEV:</strong> Aggressive (&lt;40% CPU, 2-Tier Downsize) • Instant 1-Click Dispatch</span>
+      </div>
+
+      <!-- Autonomous Real-Time Cloud Auto-Optimizer Control Panel -->
+      <div class="auto-optimizer-panel" style="background: var(--surface-elevated); border: 1px solid var(--border-hover); border-radius: 6px; padding: 16px 20px; margin-bottom: 20px;">
+        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 14px;">
+          <div>
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <span style="font-size: 15px;">⚡</span>
+              <strong style="font-size: 13.5px; text-transform: uppercase; letter-spacing: 0.6px; color: var(--text-primary);">
+                Autonomous Cloud Auto-Optimizer (Live AWS Execution)
+              </strong>
+              <span class="mono-badge" style="background: rgba(34,197,94,0.12); color: #22c55e; border-color: rgba(34,197,94,0.3); font-size: 10px; font-weight: 700;">
+                LIVE CLOUD MUTATION READY
+              </span>
+            </div>
+            <p style="font-size: 11.5px; color: var(--text-secondary); margin: 5px 0 0 0; line-height: 1.45;">
+              Executes autonomous right-sizing directly against your AWS EC2 fleet (downsizing underutilized instances to t3.nano, saving 50%) and upgrades EBS storage to gp3 (-20%). Automatically arms a 600s health surveillance observation window with instant rollback.
+            </p>
+          </div>
+          <div style="display: flex; align-items: center; gap: 14px; flex-wrap: wrap;">
+            <label style="display: flex; align-items: center; gap: 6px; font-size: 11.5px; cursor: pointer; user-select: none;">
+              <input type="checkbox" id="autoOptLiveModeCheckbox" checked style="accent-color: #22c55e;">
+              <span style="font-weight: 600;">Live Cloud Mutation</span>
+            </label>
+            <label style="display: flex; align-items: center; gap: 6px; font-size: 11.5px; cursor: pointer; user-select: none;">
+              <input type="checkbox" id="autoOptEbsCheckbox" checked style="accent-color: #22c55e;">
+              <span>Upgrade EBS to gp3 (-20%)</span>
+            </label>
+            <label style="display: flex; align-items: center; gap: 6px; font-size: 11.5px; cursor: pointer; user-select: none;">
+              <input type="checkbox" id="autoOptRollbackCheckbox" checked style="accent-color: #22c55e;">
+              <span>Arm 600s Rollback Surveillance</span>
+            </label>
+            <button id="runAutoOptimizeAwsBtn" class="btn btn-primary" style="background: #10b981; border-color: #10b981; color: #fff; font-weight: 700; padding: 7px 16px;">
+              ⚡ Run Cloud Auto-Optimization Now
+            </button>
+          </div>
+        </div>
+        <div id="autoOptimizeResultBanner" style="margin-top: 14px; display: none;"></div>
+      </div>
+
+      <div id="recsResultBanner"></div>
+
+      <!-- Empty State -->
+      <div id="recsEmptyState" class="mono-callout">
+        <div class="mono-callout-title">No Recommendations Generated Yet</div>
+        <div class="mono-callout-desc">
+          Once live telemetry is ingested from your cloud environment, click <strong>'Generate Explainable AI Recommendations'</strong> to execute multi-model inference.
+        </div>
+      </div>
+
+      <!-- Recommendations List -->
+      <div id="recsListContainer" style="display:none;"></div>
+
+      <!-- Decision Transparency & Multi-Model Explainability Attribution -->
+      <div id="attributionSection" style="display:none; margin-top: 28px; border-top: 1px solid var(--border-subtle); padding-top: 24px;">
+        <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom: 20px; flex-wrap: wrap; gap: 12px;">
+          <div>
+            <h3 style="font-size: 15px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.6px; margin-bottom: 4px;">
+              Multi-Model AI Attribution & Safety Margin Verification
+            </h3>
+            <p style="font-size: 12px; color: var(--text-secondary); margin: 0;">
+              Zero black-box decisions. Inspect which machine learning model produced what outcome, hardware capacity shifts, and safety gates.
+            </p>
+          </div>
+          <div style="display:flex; align-items:center; gap: 10px; background: var(--bg-card); border: 1px solid var(--border-subtle); padding: 6px 12px; border-radius: var(--radius-sm);">
+            <label class="form-label" style="margin:0; font-size:11px; text-transform:uppercase;">Selected Instance:</label>
+            <select id="attributionResourceSelect" class="form-select" style="width: auto; padding: 4px 10px; font-size:12px; font-weight: 600;"></select>
+          </div>
+        </div>
+
+        <!-- Hardware Specs & Cost Transition Panel -->
+        <div id="hardwareTransitionContainer" style="margin-bottom: 20px;"></div>
+
+        <!-- 5-Model Consensus & Verdict Grid (Including Model 05 PPO RL Agent) -->
+        <div id="modelAttributionGrid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; margin-bottom: 24px;"></div>
+
+        <!-- Correlated Analytical Charts (4 Grid) -->
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(420px, 1fr)); gap: 18px;">
+          <!-- Chart 1: Hardware Capacity & Cost Transition (Before vs After) -->
+          <div class="chart-card" style="height: 290px;">
+            <div class="chart-header">
+              <div>
+                <span class="chart-title">Hardware Capacity & Cost Transition</span>
+                <div style="font-size: 10px; color: var(--text-muted);">Current SKU vs AI Target SKU: vCPU, RAM, Monthly Spend, and Safe Post-Downscale CPU</div>
+              </div>
+              <span class="mono-badge">BEFORE VS AFTER</span>
+            </div>
+            <div style="height: 220px;">
+              <canvas id="skuComparisonChart"></canvas>
+            </div>
+          </div>
+
+          <!-- Chart 2: Multi-Model Consensus & Safety Gate Radar -->
+          <div class="chart-card" style="height: 290px;">
+            <div class="chart-header">
+              <div>
+                <span class="chart-title">Multi-Model Consensus & Safety Verification</span>
+                <div style="font-size: 10px; color: var(--text-muted);">Model 01 GBDT, Borg Resilience, Anomaly Margin, Model 05 PPO Policy, and Headroom vs Safety Gate</div>
+              </div>
+              <span class="mono-badge">SAFETY RADAR</span>
+            </div>
+            <div style="height: 220px;">
+              <canvas id="modelConsensusChart"></canvas>
+            </div>
+          </div>
+
+          <!-- Chart 3: Key Telemetry Feature Drivers Behind Sizing Decision -->
+          <div class="chart-card" style="height: 290px;">
+            <div class="chart-header">
+              <div>
+                <span class="chart-title">Instance Telemetry Feature Drivers</span>
+                <div style="font-size: 10px; color: var(--text-muted);">Top metrics driving Model 01's right-sizing gradient boosted decision trees</div>
+              </div>
+              <span class="mono-badge">MODEL 01 DRIVERS</span>
+            </div>
+            <div style="height: 220px;">
+              <canvas id="featuresChart"></canvas>
+            </div>
+          </div>
+
+          <!-- Chart 4: Borg Resilience Score Gauge -->
+          <div class="chart-card" style="height: 290px; text-align: center;">
+            <div class="chart-header">
+              <div>
+                <span class="chart-title">Google Borg Workload Resilience</span>
+                <div style="font-size: 10px; color: var(--text-muted);">Deep PyTorch ResNet (Residual MLP) trained on 10,081 Google Borg cluster traces</div>
+              </div>
+              <span id="resilienceScoreDisplay" class="mono-badge">95.0 / 100</span>
+            </div>
+            <div style="height: 180px; position: relative;">
+              <canvas id="resilienceGauge"></canvas>
+            </div>
+            <div style="font-size: 11px; color: var(--text-secondary); margin-top: -10px;">
+              Enterprise Safety Gate: <strong>&ge; 80.0</strong> indicates high safe headroom with near-zero eviction probability
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 04: Asynchronous Cloud Queue Dispatch -->
+    <section class="mono-panel" id="secQueue">
+      <div class="mono-panel-header">
+        <div>
+          <h2 class="mono-panel-title">04 // Asynchronous Cloud Message Queue Dispatch</h2>
+          <p class="mono-panel-desc">Real-time decoupling across AWS SQS, GCP Pub/Sub, Azure Storage Queue, or local audit trail</p>
+        </div>
+        <span class="mono-badge">AUDIT VERIFIED</span>
+      </div>
+
+      <div class="section-tldr-banner">
+        <span class="section-tldr-badge">💡 PLAIN ENGLISH GUIDE</span>
+        <div>
+          <strong>Asynchronous Queue Decoupling:</strong> Optimization payloads are dispatched to standard cloud message brokers (AWS SQS FIFO, Azure Service Bus, GCP Pub/Sub). Unique deduplication IDs prevent redundant executions. Inspect raw JSON payload contracts in real time below.
+        </div>
+      </div>
+
+      <div class="grid-2-col">
+        <!-- Target Selection & Dispatch Button -->
+        <div>
+          <div class="form-group">
+            <label class="form-label">Target Compute Resource to Dispatch</label>
+            <select id="queueResourceSelect" class="form-select"></select>
+          </div>
+          <div id="queueDispatchControls"></div>
+          <div id="queueResultBanner"></div>
+        </div>
+
+        <!-- Audit Stream Table -->
+        <div style="border-left: 1px solid var(--border-subtle); padding-left: 24px;">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 8px;">
+            <span class="form-label" style="margin:0;">Cloud Message Queue Audit Stream</span>
+            <span class="mono-badge">REAL TRANSACTIONS</span>
+          </div>
+          <div id="queueAuditContainer">
+            <p style="font-size: 12px; color: var(--text-muted);">No queue transactions recorded yet in this session.</p>
+          </div>
+
+          <!-- Raw Message JSON Contract Inspector -->
+          <div style="margin-top: 16px; border-top: 1px solid var(--border-subtle); padding-top: 12px;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+              <span class="form-label" style="margin:0; font-size: 11px; text-transform: uppercase;">
+                📦 Message JSON Contract &amp; Schema Inspector
+              </span>
+              <div style="display:flex; align-items:center; gap:8px;">
+                <button type="button" id="copyQueueJsonBtn" class="btn btn-sm btn-secondary" style="font-size:10px; padding:2px 8px;" title="Copy JSON payload to clipboard">
+                  📋 Copy JSON
+                </button>
+                <span class="mono-badge" style="font-size: 9.5px;">FIFO / DEDUPLICATED</span>
+              </div>
+            </div>
+            <pre class="json-contract-viewer" id="queuePayloadInspector">// Select any queue transaction above to inspect its real JSON payload schema</pre>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 05: Health Surveillance & Auto-Rollback -->
+    <section class="mono-panel" id="secRollback">
+      <div class="mono-panel-header">
+        <div>
+          <h2 class="mono-panel-title">05 // Post-Optimization Health Surveillance &amp; Auto-Rollback</h2>
+          <p class="mono-panel-desc">Automated 10-minute observation window. Auto-reverts SKU if CPU exceeds 85% safety boundary.</p>
+        </div>
+        <span class="mono-badge">SAFETY TRIGGER: CPU &gt; 85%</span>
+      </div>
+
+      <div class="section-tldr-banner">
+        <span class="section-tldr-badge">💡 PLAIN ENGLISH GUIDE</span>
+        <div>
+          <strong>Post-Optimization Fail-Safe Surveillance:</strong> Newly resized instances enter an automated 600-second surveillance loop. If CPU exceeds 85%, CloudOpt AI automatically rolls back to the original SKU with zero downtime.
+        </div>
+      </div>
+
+      <!-- Finite State Automaton (FSA) Rollback State Machine -->
+      <div class="fsa-state-machine-box">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; flex-wrap: wrap; gap: 8px;">
+          <div>
+            <span style="font-size: 12px; font-weight: 700; text-transform: uppercase; color: var(--text-primary);">
+              🔄 Finite State Automaton (FSA) Rollback State Machine
+            </span>
+            <span style="font-size: 11px; color: var(--text-secondary); margin-left: 6px;">
+              Deterministic state transitions enforced during post-optimization surveillance
+            </span>
+          </div>
+          <span class="mono-badge" id="fsaStatusBadge">SURVEILLANCE STANDBY</span>
+        </div>
+        <div class="fsa-flow-track">
+          <div class="fsa-state-node" id="fsaStateDispatched">
+            <div class="fsa-state-title">01 // DISPATCHED</div>
+            <div class="fsa-state-caption">Enqueued to SQS &amp; Applied</div>
+          </div>
+          <div class="fsa-transition-arrow">➔</div>
+          <div class="fsa-state-node active-state" id="fsaStateSurveillance">
+            <div class="fsa-state-title">02 // SURVEILLANCE</div>
+            <div class="fsa-state-caption">600s Health Monitoring Loop</div>
+          </div>
+          <div class="fsa-transition-arrow">➔</div>
+          <div class="fsa-state-node rollback-state" id="fsaStateRollback">
+            <div class="fsa-state-title">03A // AUTO-ROLLBACK</div>
+            <div class="fsa-state-caption">Triggered if CPU &gt; 85%</div>
+          </div>
+          <div class="fsa-transition-arrow">or</div>
+          <div class="fsa-state-node commit-state" id="fsaStateCommitted">
+            <div class="fsa-state-title">03B // COMMITTED</div>
+            <div class="fsa-state-caption">Health Verified &ge; 600s</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Live Monitored Actions Container -->
+      <div id="rollbackActionsContainer" style="margin-bottom: 16px;">
+        <p style="font-size:12px; color:var(--text-secondary);">No optimizations currently under observation. Actions dispatched above will enter a monitored observation window.</p>
+      </div>
+
+      <!-- Real Cloud Surveillance Parameters -->
+      <div style="background:var(--bg-card); border:1px solid var(--border-subtle); border-radius:var(--radius-sm); padding:12px 16px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px; font-size:11.5px;">
+        <div style="display:flex; align-items:center; gap:8px;">
+          <span class="pulse-dot" style="background:#22c55e;"></span>
+          <span><strong>Active Surveillance Loop:</strong> High-resolution 10-second polling window on all newly resized instances.</span>
+        </div>
+        <div style="display:flex; gap:12px; align-items:center; font-family:'JetBrains Mono'; font-size:11px;">
+          <span style="color:var(--text-secondary);">Breach Trigger: <strong style="color:#ef4444;">CPU &gt; 85.0%</strong></span>
+          <span style="color:var(--border-subtle);">|</span>
+          <span style="color:var(--text-secondary);">Surveillance Window: <strong style="color:var(--text-primary);">600s (10 min)</strong></span>
+          <span style="color:var(--border-subtle);">|</span>
+          <span style="color:var(--text-secondary);">Rollback Target: <strong style="color:#38bdf8;">Original Pre-Opt SKU</strong></span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 06: Multi-Horizon Spend Forecaster -->
+    <section class="mono-panel" id="secForecaster">
+      <div class="mono-panel-header">
+        <div>
+          <h2 class="mono-panel-title">06 // Multi-Horizon Cloud Spend Forecaster</h2>
+          <p class="mono-panel-desc">Time-Series ML Projection with 95% Confidence Interval Ribbons</p>
+        </div>
+        <span class="mono-badge" id="forecasterHeaderBadge">R² 0.923 | $35.71 MAE</span>
+      </div>
+
+      <div class="section-tldr-banner">
+        <span class="section-tldr-badge">💡 PLAIN ENGLISH GUIDE</span>
+        <div>
+          <strong>Multi-Horizon Cost Forecasting:</strong> Autoregressive machine learning model trained on historical spend curves. Projects 7 to 90-day future spend with statistical 95% confidence interval bands to forecast budget volatility.
+        </div>
+      </div>
+
+      <div class="grid-3-col" style="align-items:end; margin-bottom: 20px;">
+        <div class="form-group" style="margin-bottom:0;">
+          <label class="form-label">Baseline Daily Cloud Spend ($)</label>
+          <input type="number" id="baselineDailyCost" class="form-input" value="0.50" min="0.01" step="0.10" placeholder="Auto-calculated from live fleet">
+        </div>
+        <div class="form-group" style="margin-bottom:0;">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:4px;">
+            <label class="form-label" style="margin-bottom:0;">Projection Horizon</label>
+            <div style="display:flex; gap:4px;">
+              <button type="button" class="btn btn-sm btn-secondary horizon-preset-btn" data-days="7" style="font-size:9.5px; padding:1px 5px;">7D</button>
+              <button type="button" class="btn btn-sm btn-secondary horizon-preset-btn" data-days="14" style="font-size:9.5px; padding:1px 5px;">14D</button>
+              <button type="button" class="btn btn-sm btn-secondary horizon-preset-btn" data-days="30" style="font-size:9.5px; padding:1px 5px;">30D</button>
+              <button type="button" class="btn btn-sm btn-secondary horizon-preset-btn" data-days="60" style="font-size:9.5px; padding:1px 5px;">60D</button>
+              <button type="button" class="btn btn-sm btn-secondary horizon-preset-btn" data-days="90" style="font-size:9.5px; padding:1px 5px;">90D</button>
+            </div>
+          </div>
+          <select id="forecastHorizon" class="form-select">
+            <option value="7">7 Days (Short Term)</option>
+            <option value="14">14 Days (Bi-Weekly)</option>
+            <option value="30" selected>30 Days (Monthly Executive)</option>
+            <option value="60">60 Days (Quarterly Projection)</option>
+            <option value="90">90 Days (Multi-Month Outlook)</option>
+          </select>
+        </div>
+        <div>
+          <button id="forecastCalculateBtn" class="btn btn-primary" style="width:100%;">Update Spend Forecast</button>
+        </div>
+      </div>
+
+      <!-- Forecast Chart Canvas -->
+      <div class="chart-card" style="height: 340px;">
+        <div class="chart-header">
+          <span class="chart-title">Multi-Horizon Cost Projection with 95% Confidence Bounds</span>
+          <span class="mono-badge">ENSEMBLE FORECASTER</span>
+        </div>
+        <div style="height: 270px;">
+          <canvas id="forecastChart"></canvas>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <!-- Gmail Mandatory Entry Gate Modal -->
+  <div id="gmailLoginModal" class="modal-overlay">
+    <div class="modal-card">
+      <div class="modal-header" style="border-bottom:none; margin-bottom:12px; padding-bottom:0;">
+        <div>
+          <div style="display:flex; align-items:center; gap:8px; margin-bottom:8px;">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+              <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
+              <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
+              <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z" fill="#FBBC05"/>
+              <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z" fill="#EA4335"/>
+            </svg>
+            <span class="mono-badge" style="font-size:10px;">ENTERPRISE ACCESS GATE</span>
+          </div>
+          <h2 class="modal-title" style="font-size:20px;">Sign in with Gmail</h2>
+          <p class="modal-desc">
+            Enter your Gmail address to access CloudOpt AI. Real-time notifications and infrastructure optimization alerts will be practically dispatched to this address.
+          </p>
+        </div>
+      </div>
+
+      <form id="gmailLoginForm" style="margin-top:16px;">
+        <div class="form-group">
+          <label class="form-label" for="loginEmailInput">Google / Gmail Address <span style="color:#ef4444;">*</span></label>
+          <input type="email" id="loginEmailInput" class="form-input" placeholder="e.g. madhu@gmail.com" required autocomplete="email" style="font-size:14px;">
+          <p style="font-size:11px; color:var(--text-secondary); margin-top:4px;">
+            Alerts on cloud connections and dispatched optimizations will be dispatched to this inbox.
+          </p>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="loginNameInput">Display Name / Operator Title (Optional)</label>
+          <input type="text" id="loginNameInput" class="form-input" placeholder="e.g. Madhu (Cloud Lead)" autocomplete="name" style="font-size:14px;">
+        </div>
+
+        <div id="loginErrorMsg" style="display:none; margin-bottom:14px; font-size:12px; color:#ef4444; background:rgba(239,68,68,0.08); border:1px solid rgba(239,68,68,0.25); border-radius:4px; padding:8px 12px; line-height:1.4;"></div>
+
+        <button type="submit" id="submitGmailLoginBtn" class="btn btn-primary" style="width:100%; padding:10px; font-size:13px; font-weight:600; margin-bottom:16px;">
+          Authorize Gmail & Enter Console ➔
+        </button>
+
+        <div style="border-top:1px solid var(--border-subtle); padding-top:14px; margin-top:10px;">
+          <div style="font-size:11px; color:var(--text-muted); margin-bottom:8px; font-weight:600; text-transform:uppercase;">Authorized Enterprise Operator Accounts:</div>
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px;">
+            <button type="button" class="quick-profile-btn" data-email="madhu@gmail.com" data-name="Madhu (Cloud Architect)">
+              <strong>madhu@gmail.com</strong>
+              <div style="font-size:10px; color:var(--text-muted);">Account 245716172295</div>
+            </button>
+            <button type="button" class="quick-profile-btn" data-email="devops-lead@gmail.com" data-name="FinOps SRE Lead">
+              <strong>devops-lead@gmail.com</strong>
+              <div style="font-size:10px; color:var(--text-muted);">Enterprise FinOps</div>
+            </button>
+          </div>
+        </div>
+
+        <div style="margin-top:18px; font-size:11px; color:var(--text-muted); text-align:center; line-height:1.4;">
+          🔒 Enterprise Security Standard • Zero Synthetic Data • Live Gmail Delivery & Audit Stream
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Email Alerts & Audit Center Modal -->
+  <div id="emailAlertsModal" class="modal-overlay">
+    <div class="modal-card modal-card-lg">
+      <div class="modal-header">
+        <div>
+          <div class="modal-title">
+            <span>📧 Real-Time Email Alerts Audit Log</span>
+          </div>
+          <p class="modal-desc">
+            All notifications dispatched to your signed Gmail ID (<span id="modalActiveUserEmail" style="font-family:'JetBrains Mono'; font-weight:600;"></span>)
+          </p>
+        </div>
+        <button id="closeAlertsModalBtn" class="modal-close-btn" title="Close">✕</button>
+      </div>
+
+      <!-- Quick Action Row -->
+      <div style="padding:12px 16px; background:var(--bg-subtle); border-bottom:1px solid var(--border-subtle); display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px;">
+        <button type="button" id="sendTestAlertBtn" class="btn btn-sm btn-primary">
+          ⚡ Send Live Test Alert to My Gmail
+        </button>
+        <div id="smtpStatusBadge" style="font-size:11px; color:var(--text-secondary); display:flex; align-items:center; gap:6px;">
+          <span style="display:inline-block; width:7px; height:7px; border-radius:50%; background:#eab308;"></span>
+          <span>In-Box Delivery: Setup Needed</span>
+        </div>
+      </div>
+
+      <!-- In-box Delivery Explanation Notice -->
+      <div id="inboxDeliveryNotice" style="margin:12px 16px 0 16px; padding:10px 14px; background:rgba(234, 179, 8, 0.12); border:1px solid rgba(234, 179, 8, 0.35); border-radius:var(--radius-sm); font-size:12px; line-height:1.5; color:#fef08a;">
+        <div style="font-weight:700; display:flex; align-items:center; gap:6px; margin-bottom:4px;">
+          <span>⚠️ Why haven't I received alerts in my Gmail inbox?</span>
+        </div>
+        <div>
+          Google Mail blocks unauthenticated emails sent from local apps. All alerts are generated and recorded below in the <strong>Audit Log</strong>, but to deliver them straight into your real Gmail inbox, Google requires a 16-character <strong>Google App Password</strong>.
+        </div>
+      </div>
+
+      <!-- Collapsible Outbound SMTP Configuration -->
+      <details id="smtpConfigDetails" open style="margin:12px 16px 0 16px; font-size:12px; background:var(--bg-card); border:1px solid var(--border-subtle); border-radius:var(--radius-sm); padding:10px;">
+        <summary style="cursor:pointer; font-weight:600; color:var(--text-primary); user-select:none;">
+          ⚙️ Live In-Box Delivery Configuration (Google App Password)
+        </summary>
+        <p style="font-size:11px; color:var(--text-secondary); margin-top:6px; line-height:1.4;">
+          Google strictly requires an authorized sender to deliver emails into your inbox. Generate a 16-character Google App Password in 30 seconds:
+          <br>👉 <a href="https://myaccount.google.com/apppasswords" target="_blank" style="color:#60a5fa; text-decoration:underline; font-weight:600;">Open Google Account ➔ App Passwords ↗</a>
+        </p>
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-top:8px;">
+          <div>
+            <label style="font-size:11px; font-weight:600; color:var(--text-muted);">Sender Gmail Address</label>
+            <input type="email" id="smtpSenderEmail" class="form-input" placeholder="e.g. alerts@gmail.com" style="font-size:12px; padding:6px;">
+          </div>
+          <div>
+            <label style="font-size:11px; font-weight:600; color:var(--text-muted);">16-Char Google App Password</label>
+            <input type="password" id="smtpSenderPassword" class="form-input" placeholder="•••• •••• •••• ••••" style="font-size:12px; padding:6px;">
+          </div>
+        </div>
+        <div style="margin-top:8px; display:flex; justify-content:flex-end;">
+          <button type="button" id="saveSmtpConfigBtn" class="btn btn-sm btn-secondary" style="font-size:11px;">Save & Verify Outbound Sender</button>
+        </div>
+      </details>
+
+      <div class="modal-body" id="alertsAuditListContainer" style="max-height:420px; padding-top:12px;">
+        <div style="text-align:center; padding:32px; color:var(--text-muted);">Loading alert records...</div>
+      </div>
+      <div style="border-top:1px solid var(--border-subtle); padding-top:12px; margin-top:12px; display:flex; justify-content:space-between; align-items:center;">
+        <span style="font-size:11px; color:var(--text-muted);">Real-time dispatch via Google SMTP (587 TLS) / In-App Email Artifacts</span>
+        <button id="refreshAlertsBtn" class="btn btn-secondary" style="font-size:11px; padding:4px 10px;">Refresh Log</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Email HTML Preview Modal -->
+  <div id="emailPreviewModal" class="modal-overlay">
+    <div class="modal-card modal-card-lg" style="max-width:680px; height:80vh;">
+      <div class="modal-header" style="margin-bottom:10px; padding-bottom:10px;">
+        <div>
+          <div class="modal-title" id="emailPreviewSubject" style="font-size:15px;">Email Subject Preview</div>
+          <p class="modal-desc" id="emailPreviewMeta" style="font-size:11px; font-family:'JetBrains Mono';"></p>
+        </div>
+        <button id="closePreviewModalBtn" class="modal-close-btn" title="Close">✕</button>
+      </div>
+      <div class="modal-body" style="flex:1; padding:0; height:calc(100% - 60px);">
+        <iframe id="emailPreviewIframe" style="width:100%; height:100%; border:none; background:#0c0c0e; border-radius:var(--radius-sm);" sandbox="allow-same-origin"></iframe>
+      </div>
+    </div>
+  </div>
+
+  <!-- AI Models Inspection & Diagnostics Modal -->
+  <div id="aiModelsModal" class="modal-overlay">
+    <div class="modal-card modal-card-lg" style="max-width:760px;">
+      <div class="modal-header">
+        <div>
+          <div class="modal-title">
+            <span>🧠 Autonomous AI Models & Verified Evaluation Metrics</span>
+          </div>
+          <p class="modal-desc">
+            Directly serialized from <code style="color:#60a5fa;">models/metrics.json</code> — trained across 313MB Borg traces, multi-cloud telemetry, and 277k anomaly records.
+          </p>
+        </div>
+        <button id="closeAiModelsModalBtn" class="modal-close-btn" title="Close">✕</button>
+      </div>
+
+      <div class="modal-body" style="padding:16px 20px;">
+        <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(220px, 1fr)); gap:14px; margin-bottom:16px;">
+          <!-- Model 1 -->
+          <div style="background:var(--bg-card); border:1px solid var(--border-subtle); border-radius:6px; padding:14px;">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+              <span style="font-size:11px; font-weight:700; color:#22c55e; text-transform:uppercase;">01 // Sizing Classifier</span>
+              <span class="mono-badge" id="modalResAccBadge">99.7% ACC</span>
+            </div>
+            <div style="font-size:14px; font-weight:700; color:var(--text-primary); margin-bottom:4px;">Resource Right-Sizing Engine</div>
+            <div style="font-size:11px; color:var(--text-secondary); line-height:1.4; margin-bottom:10px;">
+              Predicts optimal right-sizing actions (scale down / scale up / no action) and hourly dollar savings.
+            </div>
+            <div style="font-size:11px; font-family:'JetBrains Mono'; background:var(--bg-subtle); padding:8px; border-radius:4px; display:grid; grid-template-columns:1fr 1fr; gap:4px;">
+              <div>Accuracy: <strong id="modalResAcc">99.67%</strong></div>
+              <div>Weighted F1: <strong id="modalResF1">0.9967</strong></div>
+              <div>Cost MAE: <strong id="modalResMae">$0.1058/hr</strong></div>
+              <div>UI: <strong style="color:#60a5fa;">Sec 03 Recs</strong></div>
+            </div>
+          </div>
+
+          <!-- Model 2 -->
+          <div style="background:var(--bg-card); border:1px solid var(--border-subtle); border-radius:6px; padding:14px;">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+              <span style="font-size:11px; font-weight:700; color:#60a5fa; text-transform:uppercase;">02 // Neural Network</span>
+              <span class="mono-badge" id="modalBorgEpochsBadge">500 EPOCHS</span>
+            </div>
+            <div style="font-size:14px; font-weight:700; color:var(--text-primary); margin-bottom:4px;">Borg Workload Resilience Net</div>
+            <div style="font-size:11px; color:var(--text-secondary); line-height:1.4; margin-bottom:10px;">
+              Deep PyTorch Residual Net trained on 10,081 Google Borg cluster traces to calculate workload headroom & failure risk.
+            </div>
+            <div style="font-size:11px; font-family:'JetBrains Mono'; background:var(--bg-subtle); padding:8px; border-radius:4px; display:grid; grid-template-columns:1fr 1fr; gap:4px;">
+              <div>Epochs: <strong id="modalBorgEpochs">500 Deep</strong></div>
+              <div>Samples: <strong id="modalBorgSamples">10,081 Traces</strong></div>
+              <div>Headroom: <strong style="color:#22c55e;">Score &ge; 80</strong></div>
+              <div>UI: <strong style="color:#60a5fa;">Sec 03 Gauge</strong></div>
+            </div>
+          </div>
+
+          <!-- Model 3 -->
+          <div style="background:var(--bg-card); border:1px solid var(--border-subtle); border-radius:6px; padding:14px;">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+              <span style="font-size:11px; font-weight:700; color:#a855f7; text-transform:uppercase;">03 // Time-Series ML</span>
+              <span class="mono-badge" id="modalFcR2Badge">R² 0.923</span>
+            </div>
+            <div style="font-size:14px; font-weight:700; color:var(--text-primary); margin-bottom:4px;">Multi-Horizon Spend Forecaster</div>
+            <div style="font-size:11px; color:var(--text-secondary); line-height:1.4; margin-bottom:10px;">
+              Autoregressive multi-horizon lag regressor projecting 30/60/90-day daily spend with 95% confidence intervals.
+            </div>
+            <div style="font-size:11px; font-family:'JetBrains Mono'; background:var(--bg-subtle); padding:8px; border-radius:4px; display:grid; grid-template-columns:1fr 1fr; gap:4px;">
+              <div>Variance R²: <strong id="modalFcR2">0.923</strong></div>
+              <div>Daily MAE: <strong id="modalFcMae">$35.71/day</strong></div>
+              <div>RMSE: <strong id="modalFcRmse">$55.29</strong></div>
+              <div>UI: <strong style="color:#60a5fa;">Sec 06 Chart</strong></div>
+            </div>
+          </div>
+
+          <!-- Model 4 -->
+          <div style="background:var(--bg-card); border:1px solid var(--border-subtle); border-radius:6px; padding:14px;">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+              <span style="font-size:11px; font-weight:700; color:#f59e0b; text-transform:uppercase;">04 // Dual-Engine</span>
+              <span class="mono-badge" id="modalAnomAucBadge">0.841 AUC</span>
+            </div>
+            <div style="font-size:14px; font-weight:700; color:var(--text-primary); margin-bottom:4px;">Anomaly & Risk Detector</div>
+            <div style="font-size:11px; color:var(--text-secondary); line-height:1.4; margin-bottom:10px;">
+              Isolation Forest + Supervised Gradient Boosting detecting saturation spikes, anomalies, and failover risks.
+            </div>
+            <div style="font-size:11px; font-family:'JetBrains Mono'; background:var(--bg-subtle); padding:8px; border-radius:4px; display:grid; grid-template-columns:1fr 1fr; gap:4px;">
+              <div>ROC-AUC: <strong id="modalAnomAuc">0.8406</strong></div>
+              <div>Recall: <strong id="modalAnomRecall">69.81%</strong></div>
+              <div>Validation: <strong id="modalAnomVal">55,514 rows</strong></div>
+              <div>UI: <strong style="color:#60a5fa;">Sec 03 Risk</strong></div>
+            </div>
+          </div>
+
+          <!-- Model 5 -->
+          <div style="background:var(--bg-card); border:1px solid var(--border-subtle); border-radius:6px; padding:14px;">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+              <span style="font-size:11px; font-weight:700; color:#10b981; text-transform:uppercase;">05 // Reinforcement Learning</span>
+              <span class="mono-badge" id="modalPpoEpsBadge" style="background:rgba(16,185,129,0.1); color:#10b981;">PPO AGENT</span>
+            </div>
+            <div style="font-size:14px; font-weight:700; color:var(--text-primary); margin-bottom:4px;">Autonomous PPO Policy Agent</div>
+            <div style="font-size:11px; color:var(--text-secondary); line-height:1.4; margin-bottom:10px;">
+              Proximal Policy Optimization Actor-Critic neural agent optimizing multi-objective cloud right-sizing with clipped surrogate loss.
+            </div>
+            <div style="font-size:11px; font-family:'JetBrains Mono'; background:var(--bg-subtle); padding:8px; border-radius:4px; display:grid; grid-template-columns:1fr 1fr; gap:4px;">
+              <div>Episodes: <strong id="modalPpoEps">150 Eps</strong></div>
+              <div>Transitions: <strong id="modalPpoSamples">50,000 Steps</strong></div>
+              <div>Mean Reward: <strong id="modalPpoReward" style="color:#10b981;">+93.9</strong></div>
+              <div>Policy Loss: <strong id="modalPpoLoss">-0.0036</strong></div>
+            </div>
+          </div>
+        </div>
+
+        <div style="background:rgba(96,165,250,0.08); border:1px solid rgba(96,165,250,0.25); border-radius:6px; padding:12px 16px; font-size:12px; line-height:1.5;">
+          <div style="font-weight:700; color:#93c5fd; margin-bottom:4px;">💡 Where are these models producing results right now on the frontend?</div>
+          <ul style="margin:0; padding-left:18px; color:var(--text-secondary);">
+            <li><strong>Section 03 (Recommendations Table)</strong>: Each SKU recommendation and dollar savings is computed live by Model 01.</li>
+            <li><strong>Section 03 (Explainability Gauge)</strong>: The radial gauge and failure probability are computed by Model 02 (PyTorch Borg Net).</li>
+            <li><strong>Section 03 (Attribution Bar Chart)</strong>: The feature importance drivers come from Model 01's GBDT trees.</li>
+            <li><strong>Section 03 (Decision Attribution & Radar)</strong>: Model 05 (Autonomous PPO Policy Agent) provides reinforcement learning action confidence and policy distribution alongside GBDT and Borg Net.</li>
+            <li><strong>Section 06 (Spend Forecaster)</strong>: The 30-day forward curve and upper/lower confidence ribbons are calculated live by Model 03.</li>
+            <li><strong>Section 04 & 05 (Queue Dispatch & Surveillance)</strong>: The risk classification (Low / Medium / High) and 85% safety boundary trigger are driven by Model 04.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Container -->
+  <div id="toastContainer" class="toast-container"></div>
+
+  <!-- Main Application Script -->
+  <script type="module" src="/js/app.js?v=2.7.0"></script>
+</body>
+</html>

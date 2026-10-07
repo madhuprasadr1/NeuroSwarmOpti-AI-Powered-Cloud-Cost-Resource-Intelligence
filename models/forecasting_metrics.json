@@ -1,0 +1,8 @@
+{
+  "resilience_trained_samples": 10081,
+  "cost_forecasting": {
+    "mae": 34.29,
+    "rmse": 52.97,
+    "r2": 0.93
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "feature_names": [
+    "cpu_usage",
+    "memory_usage",
+    "net_io",
+    "disk_io",
+    "vcpu",
+    "ram_gb",
+    "price_per_hour",
+    "latency_ms",
+    "throughput",
+    "utilization",
+    "cpu_ratio",
+    "memory_ratio",
+    "utilization_ratio",
+    "cpu_memory_pressure",
+    "performance_index"
+  ],
+  "metrics": {
+    "accuracy": 0.9967,
+    "macro_f1": 0.9957,
+    "weighted_f1": 0.9967,
+    "cost_mae": 0.1058,
+    "classes": [
+      "no_action",
+      "scale_down",
+      "scale_up"
+    ],
+    "feature_count": 15
+  },
+  "class_names": [
+    "no_action",
+    "scale_down",
+    "scale_up"
+  ]
+}

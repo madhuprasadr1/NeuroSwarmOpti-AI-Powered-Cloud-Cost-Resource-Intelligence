@@ -1,0 +1,14 @@
+{
+  "features": [
+    "cpu_average",
+    "cpu_maximum",
+    "cpu_requested",
+    "memory_requested",
+    "assigned_memory",
+    "priority",
+    "cpu_pressure",
+    "memory_pressure",
+    "demand_index"
+  ],
+  "continuous": true
+}

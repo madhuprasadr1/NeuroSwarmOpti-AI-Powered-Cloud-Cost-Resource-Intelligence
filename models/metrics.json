@@ -1,0 +1,44 @@
+{
+  "forecast": {
+    "workload_resilience": {
+      "samples": 10081,
+      "features": [
+        "cpu_average",
+        "cpu_maximum",
+        "cpu_requested",
+        "memory_requested",
+        "assigned_memory",
+        "priority",
+        "cpu_pressure",
+        "memory_pressure",
+        "demand_index"
+      ],
+      "epochs": 300
+    },
+    "cost_forecasting": {
+      "mae": 34.29,
+      "rmse": 52.97,
+      "r2": 0.93
+    }
+  },
+  "anomaly": {
+    "precision": 0.1674,
+    "recall": 0.6906,
+    "f1": 0.2695,
+    "roc_auc": 0.8416,
+    "training_samples": 222056,
+    "validation_samples": 55514
+  },
+  "resource": {
+    "accuracy": 0.9967,
+    "macro_f1": 0.9957,
+    "weighted_f1": 0.9967,
+    "cost_mae": 0.1058,
+    "classes": [
+      "no_action",
+      "scale_down",
+      "scale_up"
+    ],
+    "feature_count": 15
+  }
+}
