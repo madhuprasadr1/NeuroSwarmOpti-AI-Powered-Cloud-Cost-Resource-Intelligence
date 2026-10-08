@@ -621,3 +621,8 @@ Section 06 provides multi-horizon predictive forecasting powered by deep gradien
 - **Atomic Rollback State**: Every optimization captures the exact original SKU, disk configuration, and tags in `outputs/live/actions/<action_id>.json` before any modification is executed.
 - **Fail-Safe Isolation**: An alert transport issue or queue timeout fails closed and alerts the operator immediately.
 
+<img width="1272" height="646" alt="Screenshot 2026-10-08 100102" src="https://github.com/user-attachments/assets/a8fd02b0-e06a-4b65-8d8e-df8b6e3b46de" />
+<img width="891" height="549" alt="cloud" src="https://github.com/user-attachments/assets/4952d5eb-5d6f-4585-bee6-a721725c1007" />
+<img width="1263" height="634" alt="Screenshot 2026-10-08 094904" src="https://github.com/user-attachments/assets/865d5a0a-397e-4e51-871c-35c1b1bcfc30" />
+<img width="1259" height="638" alt="Screenshot 2026-10-08 095821" src="https://github.com/user-attachments/assets/bb8c2ef7-77d1-4894-8e2a-62c60b543467" />
+<img width="1271" height="618" alt="Screenshot 2026-10-08 095956" src="https://github.com/user-attachments/assets/b07692da-8d69-4638-8602-feabd971442f" />
